@@ -1,0 +1,35 @@
+# Ignore Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignore virtual environment directories
+venv/
+env/
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+
+# Ignore test coverage reports
+htmlcov/
+.coverage
+*.cover
+
+# Ignore build artifacts
+build/
+dist/
+*.egg-info/
+
+# Enivronment variables
+.env
+
+# Ignore data files
+uploads/
