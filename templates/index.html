@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">DocBrief</h1>
+    <p class="lead">Upload your legal documents and let AI simplify them for you. Get plain language explanations and
+        identify important clauses without the legal jargon.</p>
+
+    <form action="{{ url_for('upload_document') }}" method="post" enctype="multipart/form-data" class="mt-4">
+        <div class="mb-3">
+            <label for="document" class="form-label">Upload Legal Document</label>
+            <input class="form-control" type="file" id="document" name="document" required>
+            <div class="form-text">Supported formats: PDF, DOCX, TXT (Max size: 16MB)</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Analyze Document</button>
+    </form>
+</div>
+
+<h2 class="mb-4">Recent Documents</h2>
+
+{% if documents %}
+<div class="row">
+    {% for document in documents %}
+    <div class="col-md-4">
+        <div class="card document-card">
+            <div class="card-body">
+                <h5 class="card-title">{{ document['original_filename'] }}</h5>
+                <p class="card-text text-muted">Uploaded: {{ document['upload_date'] }}</p>
+                <a href="{{ url_for('view_document', doc_id=document['id']) }}" class="btn btn-outline-primary">View
+                    Analysis</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="alert alert-info">
+    No documents uploaded yet. Be the first to analyze a legal document!
+</div>
+{% endif %}
+{% endblock %}
